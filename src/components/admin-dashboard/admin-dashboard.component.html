@@ -1,0 +1,30 @@
+<h2>Пользователи</h2>
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Текущая роль</th>
+    <th>Назначить роль</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.email }}</td>
+    <td>{{ user.role }}</td>
+    <td>
+    <select #roleSelect (change)="assignRole(user.id, roleSelect.value)">
+        <option value="">—</option>
+        <option>ADMIN</option>
+        <option>TEACHER</option>
+        <option>STUDENT</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<h2>Группы</h2>
+<ul>
+  <li *ngFor="let group of groups">{{ group.name }}</li>
+</ul>
+
+<form (ngSubmit)="addGroup()">
+  <input [(ngModel)]="newGroupName" name="newGroup" required />
+  <button type="submit">Добавить группу</button>
+</form>

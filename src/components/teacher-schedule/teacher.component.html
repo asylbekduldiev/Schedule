@@ -1,0 +1,25 @@
+<label>Группа:
+  <select [(ngModel)]="selectedGroup" (change)="loadSchedule()">
+    <option value="">Все</option>
+    <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+  </select>
+</label>
+
+<table>
+  <thead>
+    <tr>
+      <th>Время</th>
+      <th>Предмет</th>
+      <th>Группа</th>
+      <th>Аудитория</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lesson of lessons">
+      <td>{{ lesson.startTime | date:'shortTime' }} - {{ lesson.endTime | date:'shortTime' }}</td>
+      <td>{{ lesson.subject }}</td>
+      <td>{{ lesson.groupName }}</td>
+      <td>{{ lesson.room }}</td>
+    </tr>
+  </tbody>
+</table>

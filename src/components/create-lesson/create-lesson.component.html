@@ -1,0 +1,25 @@
+<form (ngSubmit)="create()">
+  <label>Предмет:
+    <input [(ngModel)]="lessonBase.subject" name="subject" required />
+  </label>
+
+  <label>Аудитория:
+    <input [(ngModel)]="lessonBase.room" name="room" />
+  </label>
+
+  <label>Начало:
+    <input type="datetime-local" [(ngModel)]="lessonBase.startTime" name="startTime" />
+  </label>
+
+  <label>Конец:
+    <input type="datetime-local" [(ngModel)]="lessonBase.endTime" name="endTime" />
+  </label>
+
+  <label>Группы:
+    <select multiple [(ngModel)]="selectedGroups" name="selectedGroups">
+      <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+    </select>
+  </label>
+
+  <button type="submit">Создать</button>
+</form>
