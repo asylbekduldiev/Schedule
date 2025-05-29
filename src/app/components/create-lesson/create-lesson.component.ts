@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LessonService } from '../../app/lesson/lesson.service';
-import { Lesson } from '../../app/models/lesson.model';
-import { AuthService } from '../../app/auth/auth.service';
+import { LessonService } from '../../lesson/lesson.service';
+import { Lesson } from '../../models/lesson.model';
+import { AuthService } from '../../auth/auth.service';
+import { Subject } from '../../models/subject.model';
+import { SubjectService } from '../subject-management/subject.service';
 
 @Component({
   standalone: true,
@@ -14,6 +16,7 @@ import { AuthService } from '../../app/auth/auth.service';
 export class CreateLessonComponent {
   groups = ['101', '102', '103']; 
   selectedGroups: string[] = [];
+  subjects: Subject[] = [];
 
   lessonBase: Omit<Lesson, 'groupName' | 'id'> = {
     subject: '',
@@ -25,12 +28,15 @@ export class CreateLessonComponent {
 
 constructor(
   private lessonService: LessonService,
-  private auth: AuthService
+  private auth: AuthService,
+  private subjectService: SubjectService
 ) {
   const user = this.auth.currentUser;
   if (user?.role === 'TEACHER') {
     this.lessonBase.teacher = user.name;
   }
+
+  this.subjectService.getAll().subscribe(res => (this.subjects = res));
 }
 
   create() {

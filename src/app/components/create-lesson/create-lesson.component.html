@@ -1,6 +1,8 @@
 <form (ngSubmit)="create()">
   <label>Предмет:
-    <input [(ngModel)]="lessonBase.subject" name="subject" required />
+    <select [(ngModel)]="lessonBase.subject" name="subject" required>
+      <option *ngFor="let s of subjects" [value]="s.name">{{ s.name }}</option>
+    </select>
   </label>
 
   <label>Аудитория:

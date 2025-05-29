@@ -1,0 +1,7 @@
+<h2>Календарь занятий</h2>
+
+<ul>
+  <li *ngFor="let lesson of lessons">
+    {{ lesson.startTime | date:'shortDate' }} — {{ lesson.subject }} ({{ lesson.room }})
+  </li>
+</ul>

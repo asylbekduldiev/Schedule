@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { LessonService } from "../../app/lesson/lesson.service";
-import { Lesson } from "../../app/models/lesson.model";
+import { LessonService } from "../../lesson/lesson.service";
+import { Lesson } from "../../models/lesson.model";
 import { FormsModule } from '@angular/forms';
 
 @Component({

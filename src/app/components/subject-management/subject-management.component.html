@@ -1,0 +1,16 @@
+<h2>Предметы</h2>
+
+<ul>
+  <li *ngFor="let s of subjects">
+    {{ s.name }} ({{ s.color }}) 
+    <button (click)="remove(s.id)">×</button>
+  </li>
+</ul>
+
+<form (ngSubmit)="add()">
+  <input [(ngModel)]="newSubject.name" name="name" placeholder="Название" required />
+  <input [(ngModel)]="newSubject.color" name="color" placeholder="Цвет" />
+  <input [(ngModel)]="newSubject.icon" name="icon" placeholder="Иконка" />
+  <input [(ngModel)]="newSubject.description" name="description" placeholder="Описание" />
+  <button type="submit">Добавить</button>
+</form>

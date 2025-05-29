@@ -3,26 +3,27 @@ import { RoleGuard } from './core/guards/role.quard';
 
 export const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.routes'),
-  },
-  {
     path: 'admin',
     canActivate: [RoleGuard],
     data: { roles: ['ADMIN'] },
-    loadChildren: () => import('./admin/admin.routes'),
+    loadComponent: () => import('./admin/admin-dashboard.component').then(m => m.AdminDashboardComponent)
   },
   {
     path: 'teacher',
     canActivate: [RoleGuard],
     data: { roles: ['TEACHER'] },
-    loadChildren: () => import('./teacher/teacher.routes'),
+    loadComponent: () => import('./teacher/teacher-schedule.component').then(m => m.TeacherScheduleComponent)
   },
   {
     path: 'student',
     canActivate: [RoleGuard],
     data: { roles: ['STUDENT'] },
-    loadChildren: () => import('./student/student.routes'),
+    loadComponent: () => import('./student/student-calendar.component').then(m => m.StudentCalendarComponent)
   },
-  { path: '**', redirectTo: 'auth' },
+  {
+    path: 'auth',
+    loadComponent: () => import('./auth/login.component').then(m => m.LoginComponent)
+  },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: '**', redirectTo: '/auth' },
 ];
